@@ -14,6 +14,10 @@ public class LoginTest extends BaseTest {
     String loginWithoutEmailMessage = "An email address required.";
     String loginWithoutPasswordMessage = "Password is required.";
     String verifySuccessfulSignOutMessage = "AUTHENTICATION";
+    String invalidEmailAddress = "proba@proba";
+    String invalidEmailAddressMessage = "Invalid email address.";
+    String wrongPassword = "Testing";
+    String invalidPasswordMessage = "Authentication failed.";
 
     @Test
 
@@ -49,7 +53,7 @@ public class LoginTest extends BaseTest {
         loginPage.basePage();
         loginPage.clickOnSignInButton();
         loginPage.inputLoginData(emailAdress, "");
-        loginPage.loginWithoutEmailMessage(loginWithoutPasswordMessage);
+        loginPage.loginWithoutPasswordMessage(loginWithoutPasswordMessage);
     }
 
 
@@ -65,5 +69,30 @@ public class LoginTest extends BaseTest {
         loginPage.clickOnSignOutButton();
         loginPage.successfulSignOutMessage(verifySuccessfulSignOutMessage);
     }
+
+    @Test
+
+    public void signInWithInvalidEmailAddress(){
+
+        loginPage = new LoginPage(driver);
+
+        loginPage.basePage();
+        loginPage.clickOnSignInButton();
+        loginPage.inputLoginData(invalidEmailAddress, "");
+        loginPage.invalidEmailMessage(invalidEmailAddressMessage);
+    }
+
+    @Test
+
+    public void signInWithInvalidPassword(){
+
+        loginPage = new LoginPage(driver);
+
+        loginPage.basePage();
+        loginPage.clickOnSignInButton();
+        loginPage.inputLoginData(emailAdress, wrongPassword);
+        loginPage.invalidEmailMessage(invalidPasswordMessage);
+    }
+
 
 }

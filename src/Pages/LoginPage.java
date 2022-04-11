@@ -24,6 +24,8 @@ public class LoginPage extends BasePage{
     By errorMessageLoginWithoutPassword = By.xpath("//*[@id='center_column']/div[1]/ol/li");
     By signOutButton = By.xpath("//*[@id='header']/div[2]/div/div/nav/div[2]/a");
     By messageForSuccessfullSignOut = By.xpath("//*[@id='center_column']/h1");
+    By messageInvalidEmailAddress = By.xpath("//*[@id='center_column']/div[1]/ol/li");
+    By messageInvalidPassword = By.xpath("//*[@id='center_column']/div[1]/ol/li");
     //By orderHistoryButton = By.xpath("//*[@id='center_column']/div/div[1]/ul/li[1]/a/span");
     //By myCreditSlipsButton = By.xpath("//*[@id='center_column']/div/div[1]/ul/li[2]/a/span");
 
@@ -88,5 +90,17 @@ public class LoginPage extends BasePage{
         return this;
     }
 
+    public LoginPage invalidEmailMessage(String expectedText){
+        waitVisibility(messageInvalidEmailAddress);
+        String actualTitle = readText(messageInvalidEmailAddress);
+        assertTextEquals(expectedText, actualTitle);
+        return this;
+    }
     
+    public LoginPage invalidPasswordMessage(String expectedText){
+        waitVisibility(messageInvalidPassword);
+        String actualTitle = readText(messageInvalidPassword);
+        assertTextEquals(expectedText, actualTitle);
+        return this;
+    }
 }
