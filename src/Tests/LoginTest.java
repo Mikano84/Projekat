@@ -30,6 +30,21 @@ public class LoginTest extends BaseTest {
         loginPage.inputLoginData(emailAdress, password);
         loginPage.verifyCompletedLogin(completedLogin);
     }
+
+    @Test
+
+    public void sighOutFromWebPage(){
+
+        loginPage = new LoginPage(driver);
+
+        loginPage.basePage();
+        loginPage.clickOnSignInButton();
+        loginPage.inputLoginData(emailAdress, password);
+        loginPage.verifyCompletedLogin(completedLogin); 
+        loginPage.clickOnSignOutButton();
+        loginPage.successfulSignOutMessage(verifySuccessfulSignOutMessage);
+
+    }
     
 
     @Test
